@@ -1,0 +1,30 @@
+Task 0
+
+	Two operations get the first record and last record of texts and calls respectively,
+	using the 0th and last index of the texts and calls list.
+	
+	Accessing values in a list is done in constant time. 
+	Therefore, the two operations results in a time complexity of O(1), 
+	because the programs run-time doesn't increase with the inputs sample space
+
+Task 1
+
+	There are two loops which read every record from the texts and calls list respectively,
+	which results in O(n + n) -> O(2n).
+	We aren't concerned with constants, as its insignificant in the Big-O notation, therefore
+	the time complexity of Task1 is O(n)
+
+	
+
+Task 2
+
+	There are two seperate loops, one for reading every unique phone number from the record,
+	and another loop for getting the longest time spent on a call,
+	giving a run-time of O(n + n) -> O(2n) -> O(n)
+	
+
+Task 3 and Task 4
+	
+	A lot of constant operations, and three different loops which results in a runtime of O(n).
+	As the input sample size increases the program will take longer to run
+
