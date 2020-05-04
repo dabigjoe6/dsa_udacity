@@ -1,19 +1,15 @@
 def get_min_max(ints):
-	"""
-	Return a tuple(min, max) out of list of unsorted integers.
+	min = 0
+	max = 0
 
-	Args:
-	   ints(list): list of integers containing one or more integers
-	"""
-   min = 0
-   max = 0
-
-   for i in range(0, len(ints), 1):
-	    if ints[i] < min:
-		   min = ints[i]
+	for i in range(0, len(ints), 1):
+		if ints[i] < min:
+			min = ints[i]
 
 		if ints[i] > max:
 			max = ints[i]
+
+	return (min, max)
 
 ## Example Test Case of Ten Integers
 import random
