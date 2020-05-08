@@ -1,0 +1,11 @@
+In order to achieve a constant time complexity, as specified
+in the question, I implemented a doubly linked list 
+"DoublyLinkedList".
+
+The doubly linked list allows me to create a priority queue 
+with constant time access to the least/most priortized item, 
+and also a constant time complexity for insertion
+
+Therefore the two operations get() and put() are done in O(1) 
+time complexity and space complexity of O(N), where N is the 
+capacity of the cache

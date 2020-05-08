@@ -1,4 +1,5 @@
 import sys
+import queue as Q
 
 class Node:
 	def __init__(self, char = None, frequency = None):
@@ -7,35 +8,6 @@ class Node:
 
 		self.leftChild = None
 		self.rightChild = None
-
-class PriorityQueue:
-	def __init__(self, array_queue = None):
-		if array_queue:
-			self.queue = array_queue
-		else:
-			self.queue = []
-
-	def enqueue(self, string_tuple):
-		self.queue.append(string_tuple)
-
-		return True
-	
-	def getHighestPriority(self):
-		least_tuple = None
-		for string_tuple in self.queue:
-			if least_tuple is None:
-				least_tuple = string_tuple
-			else:
-				if least_tuple[1] > string_tuple[1]:
-					least_tuple = string_tuple
-		
-		if least_tuple:
-			self.queue.remove(least_tuple)
-			return least_tuple
-		else:
-			return None
-	def getLength(self):
-		return len(self.queue)
 
 def generateFrequency(string):
 	hash = {}
@@ -75,16 +47,19 @@ def getCharCode(node, str_code = "", map_code = {}):
 def huffman_encoding(data):
 	
 	# queue with character and frequency pair
-	queue = PriorityQueue(generateFrequency(data))
+	queue = Q.PriorityQueue()
+
+	for each_tuple in generateFrequency(data):
+		queue.put(each_tuple)
 
 	trees = []
 
-	while queue:
+	while not queue.empty():
 		
 		mergeParentNode = Node()
 
-		leastFrequencyChar1 = queue.getHighestPriority()
-		leastFrequencyChar2 = queue.getHighestPriority()
+		leastFrequencyChar1 = queue.get()
+		leastFrequencyChar2 = queue.get()
 
 		if leastFrequencyChar1 == None and leastFrequencyChar2 == None:
 			break
@@ -112,8 +87,8 @@ def huffman_encoding(data):
 
 		trees.append(mergeParentNode)
 
-		if queue.getLength() > 0:
-			queue.enqueue((mergeParentNode.char, mergeParentNode.frequency))
+		if queue.qsize() > 0:
+			queue.put((mergeParentNode.char, mergeParentNode.frequency))
 
 	return getEncodedData(trees[0], data), trees[0]
 

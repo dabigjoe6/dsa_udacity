@@ -1,0 +1,23 @@
+I imeplemented Depth First Seach using recursion
+since every folder as to be traversed in order to search the
+files that match the suffic ".c"
+
+Since each directory and its sub directories (if any) will be traversed once,
+the time complexity is dependent on the number of directories and subsequent
+subdirectories.
+
+In this case Nodes (N) represents the directories and their Edges (E)
+represent subdirectories.
+
+Therefore the time complexity is O(N + E)
+
+For the space complexity I have a stack, and new functions (elements) 
+are called(inserted) in the stack. At every leve I store the 
+children (subdirectories) of all the directories in the path 
+from root to that particular directory.
+
+Therefore when we reach the leaf node (directory) the space complexity
+will be the depth of the directories multiplied by the number of children
+i.e O(d * b)
+
+Where 'd' is the depth and 'b' is the branching factor
