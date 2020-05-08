@@ -39,10 +39,17 @@ class Map:
 
 		explored = {}
 
+		count = 0
 		while not frontier.empty():
 			current_intersection_dict = frontier.get()[1]
 			current_intersection = current_intersection_dict['intersection']
-			explored[current_intersection] = current_intersection_dict
+
+			if current_intersection in explored:
+				if current_intersection_dict['weight'] < explored[current_intersection]['weight']:
+					explored[current_intersection] = current_intersection_dict
+			else:
+				explored[current_intersection] = current_intersection_dict
+
 
 			for road in self.roads[current_intersection]:
 				if road not in explored:
@@ -51,7 +58,7 @@ class Map:
 					
 					dist_from_intersection = self.calcDistance(self.intersections[current_intersection], self.intersections[road]) + current_intersection_dict['acc_dist']
 					
-					total_weight = current_intersection_dict['weight'] + dist_from_intersection + dist_from_goal
+					total_weight = dist_from_intersection + dist_from_goal
 					
 					frontier.put((total_weight, {
 						'intersection': road,
@@ -69,4 +76,4 @@ roads = [[36, 34, 31, 28, 17], [35, 31, 27, 26, 25, 20, 18, 17, 15, 6], [39, 36,
 # roads = [[1], [0, 2], [1]]
 map_40 = Map(intersections, roads)
 
-print(map_40.a_star(5, 34))
+print(map_40.a_star(8, 24))
